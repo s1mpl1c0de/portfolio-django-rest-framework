@@ -1,6 +1,6 @@
 services:
-  postgres:
-    container_name: portfolio-postgres
+  db:
+    container_name: db
     image: postgres:16.4-alpine
     restart: unless-stopped
     volumes:
