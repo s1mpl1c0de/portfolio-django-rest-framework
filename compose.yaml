@@ -1,6 +1,6 @@
 services:
-  postgres:
-    container_name: portfolio-postgres
+  db:
+    container_name: db
     image: postgres:16.4-alpine
     restart: unless-stopped
     volumes:
@@ -11,6 +11,20 @@ services:
       POSTGRES_DB: portfolio
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
+  backend:
+    container_name: backend
+    build: ./backend
+    command: uvicorn config.asgi:application --host 0.0.0.0 --port 8000 --reload
+    volumes:
+      - ./backend:/usr/src/app
+    ports:
+      - "8000:8000"
+    environment:
+      POSTGRES_DB: portfolio
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    depends_on:
+      - db
 
 volumes:
   postgres_data:
