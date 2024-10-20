@@ -50,7 +50,9 @@ THIRD_PARTY_APPS = [
     'rest_framework',
 ]
 
-LOCAL_APPS = []
+LOCAL_APPS = [
+    'apps.accounts',
+]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 
@@ -135,6 +137,11 @@ MEDIA_ROOT = BASE_DIR / 'media'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Substituting a custom user model
+# https://docs.djangoproject.com/en/5.1/topics/auth/customizing/
+
+AUTH_USER_MODEL = 'accounts.UserProfile'
 
 # REST framework configuration
 # https://www.django-rest-framework.org/api-guide/settings/
