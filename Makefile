@@ -14,6 +14,9 @@ dumpdata:
 	docker compose exec backend python manage.py dumpdata --indent 4 accounts.UserProfile > \
 	./backend/apps/accounts/fixtures/user_profile.json
 
+flake8:
+	cd backend && flake8
+
 migrations:
 	docker compose exec backend python manage.py makemigrations
 
