@@ -17,6 +17,9 @@ dumpdata:
 flake8:
 	cd backend && flake8
 
+loaddata:
+	docker compose exec backend python manage.py loaddata user_profile.json
+
 migrations:
 	docker compose exec backend python manage.py makemigrations
 
