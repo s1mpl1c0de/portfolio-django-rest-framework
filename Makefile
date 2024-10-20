@@ -4,6 +4,9 @@ build:
 collectstatic:
 	docker compose exec backend python manage.py collectstatic
 
+createsuperuser:
+	docker compose exec backend python manage.py createsuperuser
+
 down:
 	docker compose down
 
