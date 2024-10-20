@@ -10,6 +10,10 @@ createsuperuser:
 down:
 	docker compose down
 
+dumpdata:
+	docker compose exec backend python manage.py dumpdata --indent 4 accounts.UserProfile > \
+	./backend/apps/accounts/fixtures/user_profile.json
+
 migrations:
 	docker compose exec backend python manage.py makemigrations
 
