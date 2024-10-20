@@ -20,6 +20,9 @@ flake8:
 loaddata:
 	docker compose exec backend python manage.py loaddata user_profile.json
 
+logs:
+	docker compose logs -t -f backend
+
 migrations:
 	docker compose exec backend python manage.py makemigrations
 
