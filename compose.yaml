@@ -15,7 +15,7 @@ services:
   backend:
     container_name: backend
     build: ./backend
-    command: uvicorn config.asgi:application --host 0.0.0.0 --port 8000 --reload
+    command: gunicorn -b 0.0.0.0:8000 --reload config.wsgi:application
     volumes:
       - ./backend:/usr/src/app
     ports:
