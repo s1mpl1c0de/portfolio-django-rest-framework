@@ -1,0 +1,8 @@
+CREATE = 'create'
+UPDATE = 'update'
+PARTIAL_UPDATE = 'partial_update'
+WRITABLE_ACTIONS = [CREATE, UPDATE, PARTIAL_UPDATE]
+
+LIST = 'list'
+RETRIEVE = 'retrieve'
+READABLE_ACTIONS = [LIST, RETRIEVE]
