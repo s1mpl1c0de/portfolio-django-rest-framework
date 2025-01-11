@@ -15,7 +15,7 @@ services:
   django:
     container_name: django
     build: ./backend
-    command: gunicorn -b 0.0.0.0:8000 --reload config.wsgi:application
+    command: gunicorn --bind=0.0.0.0:8000 --workers=3 --max-requests=1000 --reload config.wsgi:application
     volumes:
       - ./backend:/usr/src/app
     ports:
