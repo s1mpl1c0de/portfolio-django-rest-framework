@@ -21,7 +21,7 @@ loaddata:
 	docker compose exec django python manage.py loaddata user_profile.json
 
 logs:
-	docker compose logs -t -f django
+	docker compose logs --timestamps --follow django
 
 migrations:
 	docker compose exec django python manage.py makemigrations
