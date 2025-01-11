@@ -1,0 +1,21 @@
+[
+  {
+    "model": "accounts.userprofile",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$600000$n1ODU2EmC0D7UrvpOAypsa$FV7PiV8bPS5d97Sj1cAq5RjZfgwLHPRSZOvAMvg2ruw=",
+      "last_login": null,
+      "is_superuser": true,
+      "username": "rujikorn-admin",
+      "first_name": "Rujikorn",
+      "last_name": "Khampho",
+      "email": "rujikorn.k@example.com",
+      "is_staff": true,
+      "is_active": true,
+      "date_joined": "2024-10-20T16:34:11.658Z",
+      "uuid": "USER-PROFILE-2893dd61-da19-4035-9830-b79719c678be",
+      "groups": [],
+      "user_permissions": []
+    }
+  }
+]
