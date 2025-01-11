@@ -1,10 +1,10 @@
 services:
-  db:
-    container_name: db
+  postgres:
+    container_name: postgres
     image: postgres:16.4-alpine
     restart: unless-stopped
     volumes:
-      - ./docker/volumes/postgres:/var/lib/postgresql/data
+      - ./.docker_volumes/postgres:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     environment:
@@ -12,8 +12,8 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
 
-  backend:
-    container_name: backend
+  django:
+    container_name: django
     build: ./backend
     command: gunicorn -b 0.0.0.0:8000 --reload config.wsgi:application
     volumes:
@@ -25,4 +25,4 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     depends_on:
-      - db
+      - postgres
