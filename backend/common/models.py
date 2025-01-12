@@ -7,25 +7,21 @@ from common.utils import generate_uuid
 
 
 class Timestamp(models.Model):
-    uuid = models.CharField(
-        max_length=100,
-        editable=False,
-        unique=True,
-    )
+    uuid = models.CharField(max_length=100, editable=False, unique=True)
     created_at = models.DateTimeField(editable=False)
     updated_at = models.DateTimeField(null=True, blank=True)
     created_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='created_%(class)s',
-        editable=False,
+        editable=False
     )
     updated_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='updated_%(class)s',
         null=True,
-        blank=True,
+        blank=True
     )
 
     class Meta:
@@ -45,7 +41,7 @@ class SoftDelete(models.Model):
         on_delete=models.CASCADE,
         related_name='deleted_%(class)s',
         null=True,
-        blank=True,
+        blank=True
     )
 
     objects = SoftDeleteManager()
