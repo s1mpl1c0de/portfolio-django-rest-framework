@@ -29,5 +29,8 @@ migrations:
 migrate:
 	docker compose exec django python manage.py migrate
 
+test:
+	docker compose exec django python manage.py test
+
 up:
 	docker compose up -d
