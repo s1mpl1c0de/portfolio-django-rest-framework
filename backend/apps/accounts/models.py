@@ -6,11 +6,7 @@ from common.utils import generate_uuid
 
 
 class UserProfile(AbstractUser):
-    uuid = models.CharField(
-        max_length=100,
-        editable=False,
-        unique=True,
-    )
+    uuid = models.CharField(max_length=100, editable=False, unique=True)
 
     class Meta:
         db_table = 'accounts_user_profile'
