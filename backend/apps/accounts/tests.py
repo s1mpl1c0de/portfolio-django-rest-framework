@@ -18,7 +18,7 @@ class AccountAPITestCase(APITestCase):
             password='regular_password'
         )
 
-    def test_create_user_as_admin(self) -> None:
+    def test_create_user_by_admin(self) -> None:
         self.client.login(username='admin_user', password='admin_password')
         url = reverse('user-list')
 
@@ -39,7 +39,7 @@ class AccountAPITestCase(APITestCase):
         self.assertEqual(data.get('last_name'), user.last_name)
         self.assertEqual(data.get('email'), user.email)
 
-    def test_create_user_as_non_admin(self) -> None:
+    def test_create_user_by_non_admin(self) -> None:
         self.client.login(username='regular_user', password='regular_password')
         url = reverse('user-list')
 
@@ -54,7 +54,7 @@ class AccountAPITestCase(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_create_user_as_anonymous(self) -> None:
+    def test_create_user_by_anonymous(self) -> None:
         url = reverse('user-list')
 
         data = {
@@ -68,43 +68,43 @@ class AccountAPITestCase(APITestCase):
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_get_all_users_as_admin(self) -> None:
+    def test_get_all_users_by_admin(self) -> None:
         self.client.login(username='admin_user', password='admin_password')
         url = reverse('user-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('count'), 2)
 
-    def test_get_all_users_as_non_admin(self) -> None:
+    def test_get_all_users_by_non_admin(self) -> None:
         self.client.login(username='regular_user', password='regular_password')
         url = reverse('user-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_get_all_users_as_anonymous(self) -> None:
+    def test_get_all_users_by_anonymous(self) -> None:
         url = reverse('user-list')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_get_a_user_as_admin(self) -> None:
+    def test_get_a_user_by_admin(self) -> None:
         self.client.login(username='admin_user', password='admin_password')
         url = reverse('user-detail', kwargs={'uuid': self.admin_user.uuid})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
-    def test_get_a_user_as_non_admin(self) -> None:
+    def test_get_a_user_by_non_admin(self) -> None:
         self.client.login(username='regular_user', password='regular_password')
         url = reverse('user-detail', kwargs={'uuid': self.regular_user.uuid})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_get_a_user_as_anonymous(self) -> None:
+    def test_get_a_user_by_anonymous(self) -> None:
         self.client.login(username='regular_user', password='regular_password')
         url = reverse('user-detail', kwargs={'uuid': self.regular_user.uuid})
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_update_user_as_admin(self) -> None:
+    def test_update_user_by_admin(self) -> None:
         self.client.login(username='admin_user', password='admin_password')
         url = reverse('user-detail', kwargs={'uuid': self.admin_user.uuid})
 
@@ -124,7 +124,7 @@ class AccountAPITestCase(APITestCase):
         self.assertEqual(data.get('last_name'), user.last_name)
         self.assertEqual(data.get('email'), user.email)
 
-    def test_update_user_as_non_admin(self) -> None:
+    def test_update_user_by_non_admin(self) -> None:
         self.client.login(username='regular_user', password='regular_password')
         url = reverse('user-detail', kwargs={'uuid': self.regular_user.uuid})
 
@@ -138,7 +138,7 @@ class AccountAPITestCase(APITestCase):
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_update_user_as_anonymous(self) -> None:
+    def test_update_user_by_anonymous(self) -> None:
         url = reverse('user-detail', kwargs={'uuid': self.regular_user.uuid})
 
         data = {
@@ -151,7 +151,7 @@ class AccountAPITestCase(APITestCase):
         response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_delete_user_as_admin(self) -> None:
+    def test_delete_user_by_admin(self) -> None:
         self.client.login(username='admin_user', password='admin_password')
         url = reverse('user-detail', kwargs={'uuid': self.admin_user.uuid})
         response = self.client.delete(url)
@@ -160,13 +160,13 @@ class AccountAPITestCase(APITestCase):
         user = User.objects.filter(uuid=self.admin_user.uuid).first()
         self.assertIsNone(user)
 
-    def test_delete_user_as_non_admin(self) -> None:
+    def test_delete_user_by_non_admin(self) -> None:
         self.client.login(username='regular_user', password='regular_password')
         url = reverse('user-detail', kwargs={'uuid': self.regular_user.uuid})
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_delete_user_as_anonymous(self) -> None:
+    def test_delete_user_by_anonymous(self) -> None:
         url = reverse('user-detail', kwargs={'uuid': self.regular_user.uuid})
         response = self.client.delete(url)
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
