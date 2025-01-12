@@ -12,8 +12,10 @@ from django.urls import path, include
 from rest_framework import routers
 
 from apps.accounts.views import UserViewSet
+from apps.jobs.views import ExperienceViewSet
 
 router = routers.DefaultRouter()
+router.register(r'experiences', ExperienceViewSet, 'experience')
 router.register(r'users', UserViewSet, 'user')
 
 urlpatterns = [
