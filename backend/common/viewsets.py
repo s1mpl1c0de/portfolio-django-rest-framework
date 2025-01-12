@@ -4,7 +4,7 @@ from common.mixins import (
     CreateModelMixin,
     UpdateModelMixin,
     DestroyModelMixin,
-    ReadWritableSerializerMixin,
+    ReadWritableSerializerMixin
 )
 
 
@@ -13,6 +13,6 @@ class ModelViewSet(
     UpdateModelMixin,
     DestroyModelMixin,
     ReadWritableSerializerMixin,
-    viewsets.ModelViewSet,
+    viewsets.ModelViewSet
 ):
     lookup_field = 'uuid'
